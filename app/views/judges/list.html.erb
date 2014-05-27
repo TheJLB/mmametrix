@@ -1,0 +1,33 @@
+<div class="container">
+
+	<h3>Judges</h3>
+
+  <table class="table table-striped">
+    <tr class="info">
+      <th>Name</th>
+      <th>Dec. Total</th>
+      <th>Dec. Unan. %</th>
+      <th>Dec. Spli %</th>
+      <th>Dec. Major %</th>
+      <th>Draws</th>
+      <th>Show</th>
+      <th>Edit</th>
+    </tr>
+
+    <!-- Uncomment to destroy all Judge records -->
+    <%# Judge.find_each(&:destroy) %>
+
+	<% Judge.all.each do |judge| %>
+	<tr>
+		<td><%= judge.name %></td>
+		<td><%= judge.decisions_total %></td>
+		<td><%= judge.decisions_unan %>%</td>
+		<td><%= judge.decisions_split %>%</td>
+		<td><%= judge.decisions_major %>%</td>
+		<td><%= judge.draws %></td>
+		<td><%= link_to 'Show', judge, :class => "btn btn-primary btn-xs" %></td>
+    <td><%= link_to 'Edit', judges_edit_path(judge), :class => "btn btn-xs btn-warning" %></td>
+	</tr>
+	<% end %>
+</table>
+</div>

@@ -1,0 +1,67 @@
+<div class="container">
+
+<br>
+	<div class="row">
+        <div class="panel panel-primary searchable">
+            <div class="panel-heading">
+              <h3 class="panel-title">New Referees:</h3>
+              <div class="pull-right">
+                <%#= will_paginate @judges, :renderer => BootstrapPagination::Rails %>
+              </div>
+            </div>
+        </div>
+    </div>
+
+<% url = "http://hosteddb.fightmetric.com/referees/index/page:all" %>
+<% doc = Nokogiri::HTML(open(url)) %>
+<% @referee = doc.css('.row_is_link a') %>
+<% i=0 %>
+
+<%= form_for :referee, url: events_path do |n| %>
+
+  <table class="table table-striped">
+    <tr class="info">
+      <th>Name</th>
+      <th>Total Fights</th>
+      <th>Avg Fight Time</th>
+      <th>Decision %</th>
+      <th>KO/TKO %</th>
+      <th>Submission %</th>
+      <th>Save</th>
+    </tr>
+
+	<% @referee.each do %>
+		<% @r = Referee.new %>
+		<% @r.name = doc.css(".row_is_link a")[i].text %> 
+		<% @r.fights = doc.css("#saasbeta td:nth-child(2)")[i].text %>
+		<% @r.avg_fight_time = Time.parse("00:" << (doc.css("#saasbeta td:nth-child(3)")[i].text)) %><!-- Data needs to be imported as mm:ss -->
+		<% @r.ko_tko = doc.css("#saasbeta td:nth-child(4)")[i].text %>
+		<% @r.submission = doc.css("td:nth-child(5)")[i].text %>
+		<% @r.decision = doc.css("td:nth-child(6)")[i].text %>
+
+		<% if Referee.where( :name => @r.name).blank? %>
+		<tr>
+			<td><%= @r.name %></td>
+			<td><%= @r.fights %></td>
+			<td><%= @r.avg_fight_time.strftime("%M:%S") %></td><!-- Data needs to be imported as mm:ss -->
+			<td><%= @r.ko_tko %></td>
+			<td><%= @r.submission %></td>
+			<td><%= @r.decision %></td>
+			<td><%= link_to "Save", {:new => @r.save}, :class => "btn btn-primary btn-xs" %></td>
+		</tr>
+		<% end %>
+    	<% i +=1 %>
+    <% end %>
+<% end %>
+
+  </table>
+  <br>
+  <p><%= link_to "Reload", :back, :class => "btn btn-primary btn-xs" %>
+  <%= link_to "Back", :back, :class => "btn btn-primary btn-xs" %>
+  </p>
+
+</div>
+
+
+
+</div>

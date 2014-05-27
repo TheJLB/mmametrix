@@ -1,0 +1,91 @@
+<div class="container">
+
+  <br>
+
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Fighters:</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-info searchable">
+            <div class="panel-heading">
+                <form class="form-inline" role="form">
+                  <div class="form-group">
+                    <%= form_tag fighters_path, method: :get do %>
+                      <%= text_field_tag :query, params[:query], :class => "form-control input-sm", :type => "text"  %>
+                      <%= submit_tag "Search", name: nil, :class => "btn btn-sm btn-primary" %>
+                    <% end %>
+                  </div>
+                </form>
+
+                <div class="pull-right">
+                    <%= will_paginate @fighter, :renderer => BootstrapPagination::Rails %>
+                </div>
+            </div>
+        </div>
+
+    <table class="table table-hover table-striped table-condensed">
+
+      <tr class="info">
+        <th>Name</th>
+        <th>Nickname</th>
+        <th>W</th>
+        <th>L</th>
+        <th>D</th>
+        <th>NC</th>
+        <th>Ht</th>
+        <th>Wt</th>
+        <th>Reach</th>
+        <th>Stance</th>
+        <th>Age</th>
+        <th>SLpM</th>
+        <th>Str. Acc.</th>
+        <th>SApM</th>
+        <th>Str. Def.</th>
+        <th>TD Avg.</th>
+        <th>TD Acc.</th>
+        <th>TD Def.</th>
+        <th>Sub. Avg.</th>
+        <th>Show</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+
+      <!-- Uncomment to destroy all Judge records -->
+      <%# Fighter.find_each(&:destroy) %>
+
+    	<% @fighter.each do |f| %>
+    	<tr>
+    		<td><%= f.name %></td>
+    		<td><%= f.nickname %></td>
+    		<td><%= f.win %></td>
+        	<td><%= f.loss %></td>
+    		<td><%= f.draw %></td>
+    		<td><%= f.nc %></td>
+    		<td><%= f.height %></td>
+    		<td><%= f.weight %></td>
+    		<td><%= f.reach %></td>
+    		<td><%= f.stance %></td>
+    		<td><%= f.age %></td>
+    		<td><%= f.slpm %></td>
+    		<td><%= f.stracc %></td>
+    		<td><%= f.sapm %></td>
+    		<td><%= f.strdef %></td>
+    		<td><%= f.tdavg %></td>
+    		<td><%= f.tdacc %></td>
+    		<td><%= f.tddef %></td>
+    		<td><%= f.subavg %></td>
+    		<td><%= link_to 'Show', f, :class => "btn btn-primary btn-xs" %></td>
+	        <td><%= link_to 'Edit', edit_fighter_path(f), :class => "btn btn-xs btn-warning" %></td>
+            <td><%= link_to 'Delete', f, method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-xs btn-danger" %></td>
+
+    	</tr>
+    	<% end %>
+    </table>
+    <div class="col-md-12" align="center"><%= will_paginate @fighter, :renderer => BootstrapPagination::Rails %></div>
+  </div>
+
+</div>

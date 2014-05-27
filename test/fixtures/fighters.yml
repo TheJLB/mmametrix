@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  nickname: MyString
+  win: 1
+  loss: 1
+  draw: 1
+  nc: 1
+  height: 1
+  weight: 1
+  reach: 1
+  stance: MyString
+  age: 1
+  slpm: 9.99
+  stracc: 9.99
+  sapm: 9.99
+  strdef: 9.99
+  tdavg: 9.99
+  tdacc: 9.99
+  tddef: 9.99
+  subavg: 9.99
+
+two:
+  name: MyString
+  nickname: MyString
+  win: 1
+  loss: 1
+  draw: 1
+  nc: 1
+  height: 1
+  weight: 1
+  reach: 1
+  stance: MyString
+  age: 1
+  slpm: 9.99
+  stracc: 9.99
+  sapm: 9.99
+  strdef: 9.99
+  tdavg: 9.99
+  tdacc: 9.99
+  tddef: 9.99
+  subavg: 9.99

@@ -1,0 +1,32 @@
+<div class="container">
+
+  <br>
+
+    <div class="row">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Upcoming Events:</h3>
+          </div>
+        </div>
+      </div>
+
+
+        <div class="panel panel-info searchable">
+            <div class="panel-heading">
+                <form class="form-inline" role="form">
+                  <div class="form-group">
+                    <%= form_tag events_path, method: :get do %>
+                      <%= text_field_tag :query, params[:query], :class => "form-control input-sm", :type => "text"  %>
+                      <%= submit_tag "Search", name: nil, :class => "btn btn-sm btn-primary" %>
+                    <% end %>
+                  </div>
+                </form>
+
+                <div class="pull-right">
+                    <%= will_paginate @event, :renderer => BootstrapPagination::Rails %>
+                </div>
+            </div>
+        </div>
+
+
+</div>

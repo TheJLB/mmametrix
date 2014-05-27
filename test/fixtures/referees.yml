@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  fights: 1
+  avg_fight_time: 2014-04-14 13:02:57
+  ko_tko: 9.99
+  submission: 9.99
+  decision: 9.99
+
+two:
+  name: MyString
+  fights: 1
+  avg_fight_time: 2014-04-14 13:02:57
+  ko_tko: 9.99
+  submission: 9.99
+  decision: 9.99

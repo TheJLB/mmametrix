@@ -1,0 +1,68 @@
+<div class="container">
+
+  <br>
+
+    <div class="row">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Judges:</h3>
+          </div>
+        </div>
+      </div>
+
+        <div class="panel panel-info searchable">
+            <div class="panel-heading">
+                <form class="form-inline" role="form">
+                  <div class="form-group">
+                    <%= form_tag judges_path, method: :get do %>
+                      <%= text_field_tag :query, params[:query], :class => "form-control input-sm", :type => "text"  %>
+                      <%= submit_tag "Search", name: nil, :class => "btn btn-sm btn-primary" %>
+                    <% end %>
+                  </div>
+                </form>
+
+                <div class="pull-right">
+                    <%= will_paginate @judge, :renderer => BootstrapPagination::Rails %>
+                </div>
+            </div>
+        </div>
+
+    <table class="table table-hover table-striped table-condensed">
+
+      <tr class="info">
+        <th>Name</th>
+        <th>Dec. Total</th>
+        <th>Dec. Unan. %</th>
+        <th>Dec. Spli %</th>
+        <th>Dec. Major %</th>
+        <th>Draws</th>
+        <th>Show</th>
+        <% if user_signed_in? %>
+          <th>Edit</th>
+          <th>Delete</th>
+        <% end %>
+      </tr>
+
+      <!-- Uncomment to destroy all Judge records -->
+      <%# Judge.find_each(&:destroy) %>
+
+    	<% @judge.each do |j| %>
+    	<tr>
+    		<td><%= link_to j.name, j %></td>
+    		<td><%= j.decisions_total %></td>
+    		<td><%= number_with_precision(j.decisions_unan, :precision => 0) %>%</td>
+    		<td><%= number_with_precision(j.decisions_split, :precision => 0) %>%</td>
+    		<td><%= number_with_precision(j.decisions_major, :precision => 0) %>%</td>
+    		<td><%= j.draws %></td>
+    		<td><%= link_to 'Show', j, :class => "btn btn-primary btn-xs" %></td>
+        <% if user_signed_in? %>
+          <td><%= link_to 'Edit', edit_judge_path( {:id => j.id, :name => j.name, :decisions_total => j.decisions_total, :decisions_unan => j.decisions_unan, :decisions_split => j.decisions_split, :decisions_major => j.decisions_major, :draws => j.draws}), :class => "btn btn-xs btn-warning" %></td>
+          <td><%= link_to 'Delete', j, method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-danger btn-xs" %></td>
+        <% end %>
+    	</tr>
+    	<% end %>
+    </table>
+    <div class="col-md-12" align="center"><%= will_paginate @judge, :renderer => BootstrapPagination::Rails %></div>
+  </div>
+
+</div>

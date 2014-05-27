@@ -1,0 +1,106 @@
+ @import "bootstrap";
+
+.navbar {
+ 	margin: 0;
+  background-color: #cccc99;
+}
+
+.navbar .navbar-brand {
+	color: #993333;
+  font-size: 240%;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+}
+
+.navbar .nav > li > a {
+  text-decoration: none;
+  text-shadow: 0 -1px 1 rgba(0,0,0,0.5);
+  color: #993333;
+}
+
+.jumbotron {
+ 	background-color: #EEEEEE;
+ 	margin-bottom: 0;
+  margin-top: 20px;
+   p {font-size: 1.2em;}
+   h3 {color: #CC3300;}
+ }
+
+.table, .table-hover, .table-striped, .table-condensed {
+  border-spacing: 0;
+  margin-bottom: -9px;
+  margin-top: -10px;
+  border-spacing: -4px;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 2px;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  background-color: #cccccc;
+}
+
+.well {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 15px;
+  border-spacing: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+ /* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 70px;
+  padding-top: 35px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  font-size: 85%;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 70px;
+  background-color: #cccccc;
+}
+
+/* Panel Heading styles ---------------------- */
+.searchable {
+    margin-top: -12px;
+}
+
+/* -------- Pagination -------------- */
+.searchable .panel-heading .pull-right {
+    margin-top: -49px;
+    margin-right: -6px;
+    margin-bottom: -50px;
+}
+.searchable .panel-primary .panel {
+  margin-bottom: -10px;
+}
+
+.panel-title {
+  margin-top: 4px;
+  font-size: 1.2em;
+}
+
+/*-------------- Form Inline ------------------*/
+.form-inline {
+  margin-top: -4px;
+  margin-bottom: -4px;
+  margin-left: -6px;
+}

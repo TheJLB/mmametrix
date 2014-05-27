@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-3"> </div>
+        <div class="col-md-6">
+          <h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+              <%= devise_error_messages! %>
+
+              <%= f.label :email %>
+              <%= f.email_field :email, :autofocus => true, :type => "email", :class => "form-control", :id => "EditEmail" %>
+
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div class="alert alert-info">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
+
+              <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+              <%= f.password_field :password, :autocomplete => "off", :type => "password", :class => "form-control", :id => "EditPassword" %>
+
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation, :type => "password", :class => "form-control", :id => "EditPassword_confirm" %>
+
+              <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+              <%= f.password_field :current_password, :type => "password", :class => "form-control", :id => "CurrentPassword" %>
+
+              <br><%= f.submit "Update", :type => "submit", :class => "btn btn-primary btn-xs" %> <%= link_to "Back", :back, :type => "button", :class => "btn btn-default btn-xs" %>
+            <% end %>
+
+            <br>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :type => "button", :class => "btn btn-warning btn-xs" %> 
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

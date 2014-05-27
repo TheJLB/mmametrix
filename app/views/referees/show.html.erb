@@ -1,0 +1,69 @@
+<div class="container">
+<br>
+
+	<div class="panel panel-primary">
+		<div class="panel-heading"><font color="#ffffff" size="4"><b>Referee:</b> <%= @referee.name %></font></div>
+			<div class="panel-body">
+				<div class="col-md-9">
+
+					  	<div class="well">
+						  	<table class="table table-striped table-condensed">
+							    <tr class="info">
+							      <th>Event</th>
+							      <th>Date</th>
+							      <th>Fight</th>
+							      <th>Method</th>
+							      <th>Round</th>
+							      <th>Time</th>
+							    </tr>
+								<tr>
+									<td><%= "--" %></td>
+									<td><%= "--" %></td>
+									<td><%= "--" %></td>
+									<td><%= "--" %></td>
+									<td><%= "--" %></td>
+									<td><%= "--" %></td>
+								</tr>
+
+							</table>
+						</div>					
+
+				</div>
+
+				  	<div class="col-md-3">
+					  	<div class="well">
+						  	<table class="table table-striped table-condensed">
+						    	<tr class="info">
+							      <th>Fights Refereed</th>
+							      <th> - </th>
+							    </tr>
+							    <tr>
+							    	<td>Total:</td>
+							    	<td><%= @referee.fights %></td>
+							    </tr>
+							    <tr>
+							    	<td>Avg. Fight Time:</td>
+							    	<td><%= @referee.avg_fight_time.strftime("%H:%M") %></td>
+							    </tr>
+							    <tr>
+							    	<td>KO/TKO %:</td>
+							    	<td><%= number_with_precision(@referee.ko_tko, :precision => 0) %>%</td>
+							    </tr>
+							    <tr>
+							    	<td>Submission %:</td>
+							    	<td><%= number_with_precision(@referee.submission, :precision => 0) %>%</td>
+							    </tr>
+							    <tr>
+							    	<td>Decision %:</td>
+							    	<td><%= number_with_precision(@referee.submission, :precision => 0) %></td>
+							    </tr>
+							</table>
+						</div>
+					</div>
+			</div>
+		</div>
+		<%= link_to "Back", :back, :class => "btn btn-primary btn-sm" %>
+	</div>
+</div>
+
+</div>

@@ -1,0 +1,75 @@
+<div class="container">
+
+  <br>
+
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Referees:</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-info searchable">
+            <div class="panel-heading">
+                <form class="form-inline" role="form">
+                  <div class="form-group">
+                    <%= form_tag referees_path, method: :get do %>
+                      <%= text_field_tag :query, params[:query], :class => "form-control input-sm", :type => "text"  %>
+                      <%= submit_tag "Search", name: nil, :class => "btn btn-sm btn-primary" %>
+                    <% end %>
+                  </div>
+                </form>
+
+                <div class="pull-right">
+                    <%= will_paginate @referee, :renderer => BootstrapPagination::Rails %>
+                </div>
+            </div>
+        </div>
+
+    <table class="table table-hover table-striped table-condensed">
+
+      <tr class="info">
+        <th>Name</th>
+        <th>Total Fights</th>
+        <th>Avg. Fight Time</th>
+        <th>Decision %</th>
+        <th>KO/TKO %</th>
+        <th>Sub %</th>
+        <th>Show</th>
+        <% if user_signed_in? %>
+          <th>Edit</th>
+          <th>Delete</th>
+        <% end %>
+      </tr>
+
+      <!-- Uncomment to destroy all Judge records -->
+      <%# Referee.find_each(&:destroy) %>
+
+    	<% @referee.each do |r| %>
+    	<tr>
+    		<td><%= link_to r.name, r %></td>
+    		<td><%= r.fights %></td>
+    		<td>
+          <% if r.avg_fight_time.is_a?(String) %>
+            <%= Time.parse(r.avg_fight_time).strftime("%M:%S") %>
+          <% else %>
+            <%= r.avg_fight_time.strftime("%M:%S") %>
+          <% end %>
+        </td>
+        <td><%= number_with_precision(r.decision, :precision => 0) %>%</td>
+    		<td><%= number_with_precision(r.ko_tko, :precision => 0) %>%</td>
+    		<td><%= number_with_precision(r.submission, :precision => 0) %>%</td>
+    		<td><%= link_to 'Show', r, :class => "btn btn-primary btn-xs" %></td>
+        <% if user_signed_in? %>
+         <td><%= link_to 'Edit', edit_referee_path({:id => r.id, :name => r.name, :fights => r.fights, :avg_fight_time => r.avg_fight_time,
+          :ko_tko => r.ko_tko, :submission => r.submission, :decision => r.decision}), :class => "btn btn-xs btn-warning" %></td>
+         <td><%= link_to 'Delete', r, method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-danger btn-xs" %></td>
+        <% end %>
+    	</tr>
+    	<% end %>
+    </table>
+    <div class="col-md-12" align="center"><%= will_paginate @referee, :renderer => BootstrapPagination::Rails %></div>
+  </div>
+
+</div>

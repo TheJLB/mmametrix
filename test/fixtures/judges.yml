@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  decisions_total: 1
+  decisions_unan: 9.99
+  decisions_split: 9.99
+  decisions_major: 9.99
+  draws: 1
+  event: MyString
+  fight: MyString
+
+two:
+  name: MyString
+  decisions_total: 1
+  decisions_unan: 9.99
+  decisions_split: 9.99
+  decisions_major: 9.99
+  draws: 1
+  event: MyString
+  fight: MyString

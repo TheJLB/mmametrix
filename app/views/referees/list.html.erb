@@ -1,0 +1,57 @@
+<div class="container">
+
+  <br>
+
+    <div class="row">
+        <div class="panel panel-primary searchable">
+            <div class="panel-heading">
+              <h3 class="panel-title">Referees:</h3>
+
+                <form class="form-inline text-center" role="form">
+                  <div class="form-group">
+                    <%= form_tag referees_path, method: :get do %>
+                      <%= text_field_tag :query, params[:query], :class => "form-control input-sm", :type => "text"  %>
+                      <%= submit_tag "Search", name: nil, :class => "btn btn-sm btn-info" %>
+                    <% end %>
+                  </div>
+                </form>
+
+                <div class="pull-right">
+                    <%= will_paginate @referees, :renderer => BootstrapPagination::Rails %>
+                </div>
+            </div>
+        </div>
+
+    <table class="table table-hover table-striped table-condensed">
+
+      <tr class="info">
+        <th>Name</th>
+        <th>Total Fights</th>
+        <th>Avg. Fight Time</th>
+        <th>Decision %</th>
+        <th>KO/TKO %</th>
+        <th>Sub %</th>
+        <th>Show</th>
+        <th>Edit</th>
+      </tr>
+
+      <!-- Uncomment to destroy all Referee records -->
+      <%# Referee.find_each(&:destroy) %>
+
+    	<% @referees.each do |r| %>
+    	<tr>
+    		<td><%= link_to r.name, r %></td>
+    		<td><%= r.fights %></td>
+    		<td><%= r.avg_fight_time.strftime("%H:%M") %></td>
+        <td><%= number_with_precision(r.decision, :precision => 0) %>%</td>
+    		<td><%= number_with_precision(r.ko_tko, :precision => 0) %>%</td>
+    		<td><%= number_with_precision(r.submission, :precision => 0) %>%</td>
+    		<td><%= link_to 'Show', r, :class => "btn btn-primary btn-xs" %></td>
+        <td><%= link_to 'Edit', referees_edit_path(r), :class => "btn btn-xs btn-warning" %></td>
+    	</tr>
+    	<% end %>
+    </table>
+    <div class="col-md-12" align="center"><%= will_paginate @referees, :renderer => BootstrapPagination::Rails %></div>
+  </div>
+
+</div>

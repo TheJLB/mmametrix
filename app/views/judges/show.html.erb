@@ -1,0 +1,68 @@
+<div class="container">
+<br>
+
+	<div class="panel panel-primary">
+		<div class="panel-heading"><font color="#ffffff" size="4"><b>Judge:</b> <%= @judge.name %></font></div>
+			<div class="panel-body">
+				<div class="col-md-9">
+
+					  	<div class="well">
+						  	<table class="table table-striped table-condensed">
+							    <tr class="info">
+							      <th>Event</th>
+							      <th>Date</th>
+							      <th>Fight</th>
+							      <th>Method</th>
+							      <th>Score</th>
+							      <th>DIS</th>
+							    </tr>
+								<tr>
+									<td><%= "--" %></td>
+									<td><%= "--" %></td>
+									<td><%= "--" %></td>
+									<td><%= "--" %></td>
+									<td><%= "--" %></td>
+									<td><%= "--" %></td>
+								</tr>
+
+							</table>
+						</div>					
+
+				</div>
+
+				  	<div class="col-md-3">
+					  	<div class="well">
+						  	<table class="table table-striped table-condensed">
+						    	<tr class="info">
+							      <th>Decisions</th>
+							      <th> - </th>
+							    </tr>
+							    <tr>
+							    	<td>Total:</td>
+							    	<td><%= @judge.decisions_total %></td>
+							    </tr>
+							    <tr>
+							    	<td>Unanimous:</td>
+							    	<td><%= @judge.decisions_unan %>%</td>
+							    </tr>
+							    <tr>
+							    	<td>Split:</td>
+							    	<td><%= @judge.decisions_split %>%</td>
+							    </tr>
+							    <tr>
+							    	<td>Major:</td>
+							    	<td><%= @judge.decisions_major %>%</td>
+							    </tr>
+							    <tr>
+							    	<td>Draws:</td>
+							    	<td><%= @judge.draws %></td>
+							    </tr>
+							</table>
+						</div>
+					</div>
+			</div>
+		</div>
+		<%= link_to "Back", :back, :class => "btn btn-default btn-sm" %>
+		<%= link_to "List", judges_path, :class => "btn btn-primary btn-sm" %>
+	</div>
+</div>
